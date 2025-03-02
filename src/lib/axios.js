@@ -4,7 +4,6 @@ export class HttpClient {
     constructor(basePath) {
         this.client = axios.create({
             baseURL: basePath,
-            headers: { "Content-Type": "application/json" },
         });
     }
 
@@ -13,6 +12,10 @@ export class HttpClient {
     }
 
     post(url, data, config = {}) {
-        return this.client.post(url, data, config);
+        const headers = data instanceof FormData
+            ? { "Content-Type": "multipart/form-data", ...config.headers }
+            : { "Content-Type": "application/json", ...config.headers };
+
+        return this.client.post(url, data, { ...config, headers });
     }
 }
