@@ -20,7 +20,17 @@ const Authorization = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = isLogin ? await loginUser(form) : await signupUser(form);
+      const userData = isLogin
+      ? form
+      : {
+          firstName: form.name,
+          lastName: form.surname,
+          email: form.email,
+          password: form.password,
+          profilePictureUrl: "", 
+        };
+
+      const response = isLogin ? await loginUser(userData) : await signupUser(userData);
       alert(response.message);
     } catch (error) {
       alert("Error: " + (error.message || "Something went wrong"));

@@ -1,13 +1,13 @@
 import { HttpClient } from "../lib/axios";
 
-const PATH = "/api/auth";
+const BaseUrl = "http://localhost:5051/api/User";
 
 export const loginUser = async (credentials) => {
-    const httpClient = new HttpClient(PATH);
-    return httpClient.post("/login", credentials);
+    const httpClient = new HttpClient(BaseUrl);
+    return httpClient.post("/loginuser", credentials);
 };
 
 export const signupUser = async (userData) => {
-    const httpClient = new HttpClient(PATH);
-    return httpClient.post("/signup", userData);
+    const httpClient = new HttpClient(BaseUrl);
+    return httpClient.post("/createuser", userData);
 };
