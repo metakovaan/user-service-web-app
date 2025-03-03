@@ -1,6 +1,6 @@
 import { HttpClient } from "../lib/axios";
 
-const BaseUrl = "http://localhost:5051/api/User";
+const BaseUrl = "http://localhost:5051/api/users";
 
 export const loginUser = async (credentials) => {
     const httpClient = new HttpClient(BaseUrl);
